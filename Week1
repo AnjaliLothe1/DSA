@@ -52,7 +52,6 @@ Q6. What Does Abstract Data Type Mean?
 An abstract data type (ADT) describes the expected behaviour associated with a concrete data structure. For example, a ‘list’ is an abstract data type which represents a countable number of ordered values, but again the implementation of such a data type could be implemented using a variety of different data structures, one being a ‘linked list’.
 
 The abstract datatype is special kind of datatype, whose behavior is defined by a set of values and set of operations. The keyword “Abstract” is used as we can use these datatypes, we can perform different operations. But how those operations are working that is totally hidden from the user. The ADT is made of with primitive datatypes, but operation logics are hidden.
-
 Some examples of ADT are Stack, Queue, List etc.
 
 Let us see some operations of those mentioned ADT −
@@ -76,4 +75,264 @@ List −
 	remove(x), this function is used to remove given element from the list
 	get(i), this function is used to get element at position i
 	replace(x, y), this function is used to replace x with y value
+
+Q6. What is Recursion?
+Sometimes a problem is too difficult or too complex to solve because it is too big. If the problem can be broken down into smaller versions of itself, we may be able to find a way to solve one of these smaller versions and then be able to build up to a solution to the entire problem. This is the idea behind recursion; recursive algorithms break down a problem into smaller pieces which you either already know the answer to, or can solve by applying the same algorithm to each piece, and then combining the results.
+
+Stated more concisely, a recursive definition is defined in terms of itself. Recursion is a computer programming technique involving the use of a procedure, subroutine, function, or algorithm that calls itself in a step having a termination condition so that successive repetitions are processed up to the critical step where the condition is met at which time the rest of each repetition is processed from the last one called to the first.
+
+Q7.
+
+
+This section will discuss the different types of recursion in the C programming language. Recursion is the process in which a function calls itself up to n-number of times. If a program allows the user to call a function inside the same function recursively, the procedure is called a recursive call of the function. Furthermore, a recursive function can call itself directly or indirectly in the same program.
+
+Syntax of the Recursion function
+
+void recursion ()  
+{  
+recursion(); // The recursive function calls itself inside the same function  
+}  
+int main ()  
+{  
+recursion (); // function call  
+}  
+In the above syntax, the main() function calls the recursion function only once. After that, the recursion function calls itself up to the defined condition, and if the user doesn't define the condition, it calls the same function infinite times.
+
+Types of Recursion in C
+Different types of the recursion
+Following are the types of the recursion in C programming language, as follows:
+
+Direct Recursion
+Indirect Recursion
+Tail Recursion
+No Tail/ Head Recursion
+Linear recursion
+Tree Recursion
+Direct Recursion
+When a function calls itself within the same function repeatedly, it is called the direct recursion.
+
+Structure of the direct recursion
+
+fun()  
+{  
+// write some code  
+fun();  
+// some code  
+}  
+In the above structure of the direct recursion, the outer fun() function recursively calls the inner fun() function, and this type of recursion is called the direct recursion.
+
+Let's write a program to demonstrate the direct recursion in C programming language.
+
+Program2.c
+
+#include<stdio.h>  
+int fibo_num (int i)  
+{  
+// if the num i is equal to 0, return 0;  
+if ( i == 0)  
+{  
+return 0;  
+}  
+if ( i == 1)  
+{  
+return 1;  
+}  
+return fibo_num (i - 1) + fibonacci (i -2);  
+}  
+int main ()  
+{  
+int i;  
+// use for loop to get the first 10 fibonacci series  
+for ( i = 0; i < 10; i++)  
+{  
+printf (" %d \t ", fibo_num (i));  
+}  
+return 0;  
+}  
+Output
+
+0	1	1	2	3	5	8	13	21	34 
+Indirect Recursion
+When a function is mutually called by another function in a circular manner, the function is called an indirect recursion function.
+
+Structure of the indirect recursion
+
+fun1()  
+{  
+//  write some code   
+fun2()  
+}  
+fun2()  
+{  
+// write some code  
+fun3()  
+// write some code  
+}  
+fun3()  
+{  
+// write some code  
+fun1()  
+}  
+In this structure, there are four functions, fun1(), fun2(), fun3() and fun4(). When the fun1() function is executed, it calls the fun2() for its execution. And then, the fun2() function starts its execution calls the fun3() function. In this way, each function leads to another function to makes their execution circularly. And this type of approach is called indirect recursion.
+
+Let's write a program to demonstrate the indirect recursion in C programming language.
+
+Program3.c
+
+#include <stdio.h>  
+// declaration of the odd and even() function  
+void odd(); // Add 1 when the function is odd()   
+void even(); // Subtract 1 when the function is even  
+int num = 1; // global variable   
+void odd ()  
+{     
+    // if statement check and execute the block till n is less than equal to 10  
+    if (num <= 10)  
+    {  
+        printf (" %d ", num + 1);  // print a number by adding 1  
+        num++; // increment by 1  
+        even(); // invoke the even function  
+    }  
+    return;  
+}  
+void even ()  
+{  
+    // if block check the condition that n is less than equal to 10  
+    if ( num <= 10)  
+    {  
+        printf (" %d ", num - 1); // print a number by subtracting 1   
+        num++;  
+        odd(); // call the odd() function  
+    }  
+    return;  
+}  
+int main ()  
+{  
+    odd(); // main call the odd() function at once  
+    return 0;  
+}  
+Output
+
+2  1  4  3  6  5  8  7  10  9
+Tail Recursion
+A recursive function is called the tail-recursive if the function makes recursive calling itself, and that recursive call is the last statement executes by the function. After that, there is no function or statement is left to call the recursive function.
+
+Let's write a program to demonstrate the tail recursion in C programming language.
+
+Program4.c
+
+#include <stdio.h>  
+// function definition  
+void fun1( int num)  
+{  
+    // if block check the condition  
+    if (num == 0)  
+        return;  
+    else  
+        printf ("\n Number is: %d", num); // print the number  
+    return fun1 (num - 1);      // recursive call at the end in the fun() function   
+}  
+int main ()  
+{  
+    fun1(7); // pass 7 as integer argument  
+    return 0;  
+}  
+Output
+
+Number is: 7
+ Number is: 6
+ Number is: 5
+ Number is: 4
+ Number is: 3
+ Number is: 2
+ Number is: 1
+Non-Tail / Head Recursion
+A function is called the non-tail or head recursive if a function makes a recursive call itself, the recursive call will be the first statement in the function. It means there should be no statement or operation is called before the recursive calls. Furthermore, the head recursive does not perform any operation at the time of recursive calling. Instead, all operations are done at the return time.
+
+Let's write a program to demonstrate the Head/Non-Tail recursion in C programming language.
+
+Program5.c
+
+#include <stdio.h>  
+void head_fun (int num)  
+{  
+if ( num > 0 )  
+{  
+// Here the head_fun() is the first statement to be called  
+head_fun (num -1);  
+printf (" %d", num);  
+}  
+}  
+int main ()  
+{  
+int a = 5;  
+printf (" Use of Non-Tail/Head Recursive function \n");  
+head_fun (a); // function calling  
+return 0;  
+}  
+Output
+
+Use of Non-Tail/Head Recursive function
+ 1 2 3 4 5
+Linear Recursion
+A function is called the linear recursive if the function makes a single call to itself at each time the function runs and grows linearly in proportion to the size of the problem.
+
+Let's write a program to demonstrate the linear Recursion in C programming language.
+
+Program6.c
+
+#include <stdio.h>  
+#define NUM 7  
+int rec_num( int *arr, int n)  
+{  
+    if (n == 1)  
+    {  
+        return arr[0];  
+        }     
+    return Max_num (rec_num (arr, n-1), arr[n-1]);    
+}  
+// get the maximum number  
+int Max_num (int n, int m)  
+{  
+    if (n > m)  
+        return n;  
+    return m;  
+}  
+int main ()  
+{  
+    // declare and initialize an array  
+    int arr[NUM] = { 4, 8, 23, 19, 5, 35, 2};  
+    int max = rec_num(arr, NUM); // call function  
+    printf (" The maximum number is: %d\n", max); // print the largest number  
+}  
+Output
+
+The maximum number is: 35
+Tree Recursion
+A function is called the tree recursion, in which the function makes more than one call to itself within the recursive function.
+
+Let's write a program to demonstrate the tree recursion in C programming language.
+
+Program7.c
+
+#include <stdio.h>  
+// It is called multiple times inside the fibo_num function  
+int fibo_num (int num)  
+{  
+if (num <= 1)  
+    return num;  
+return fibo_num (num - 1 ) + fibo_num(num - 2);  
+}  
+void main()  
+{  
+int num = 7;  
+printf (" Use of Tree Recursion: \n");  
+// print the number  
+printf (" The Fibonacci number is: %d", fibo_num(7));  
+}  
+Output
+
+Use of Tree Recursion:
+ The Fibonacci number is: 13
+
 
