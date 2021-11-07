@@ -81,7 +81,7 @@ Sometimes a problem is too difficult or too complex to solve because it is too b
 
 Stated more concisely, a recursive definition is defined in terms of itself. Recursion is a computer programming technique involving the use of a procedure, subroutine, function, or algorithm that calls itself in a step having a termination condition so that successive repetitions are processed up to the critical step where the condition is met at which time the rest of each repetition is processed from the last one called to the first.
 
-Q7.
+Q7. List and Explain types of Recursion
 
 
 This section will discuss the different types of recursion in the C programming language. Recursion is the process in which a function calls itself up to n-number of times. If a program allows the user to call a function inside the same function recursively, the procedure is called a recursive call of the function. Furthermore, a recursive function can call itself directly or indirectly in the same program.
